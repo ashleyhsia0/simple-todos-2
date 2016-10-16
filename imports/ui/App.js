@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Tasks } from '../api/tasks.js';
@@ -12,7 +12,7 @@ class App extends Component {
     event.preventDefault();
 
     // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+    const text = this.refs.textInput.value.trim();
  
     Tasks.insert({
       text,
@@ -20,7 +20,7 @@ class App extends Component {
     });
  
     // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    this.refs.textInput.value = '';
   }
 
   renderTasks() {
