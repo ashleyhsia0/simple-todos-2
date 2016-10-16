@@ -66,6 +66,6 @@ App.propTypes = {
 // supplies them to the underlying App component it wraps as the tasks prop
 export default createContainer(() => {
   return {
-    tasks: Tasks.find({}).fetch(),
+    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 }, App);
