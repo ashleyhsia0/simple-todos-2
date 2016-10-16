@@ -4,6 +4,12 @@ import { Tasks } from '../api/tasks.js';
  
 // Task component - represents a single todo item
 export default class Task extends Component {
+  constructor(props) {
+    super(props);    
+    this.toggleChecked = this.toggleChecked.bind(this);
+    this.deleteThisTask = this.deleteThisTask.bind(this);
+  }
+
   toggleChecked() {
     // Set the checked property to the opposite of its current value
     Tasks.update(this.props.task._id, {
@@ -22,7 +28,7 @@ export default class Task extends Component {
 
     return (
       <li className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
+        <button className="delete" onClick={this.deleteThisTask}>
           &times;
         </button>
  
@@ -30,7 +36,7 @@ export default class Task extends Component {
           type="checkbox"
           readOnly
           checked={this.props.task.checked}
-          onClick={this.toggleChecked.bind(this)}
+          onClick={this.toggleChecked}
         />
  
         <span className="text">{this.props.task.text}</span>
