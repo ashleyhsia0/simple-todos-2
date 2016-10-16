@@ -8,6 +8,12 @@ import Task from './Task.js';
  
 // App component - represents the whole app
 class App extends Component {
+  constructor(props) {
+    super(props);
+    // This line is important for autobinding
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -35,7 +41,7 @@ class App extends Component {
         <header>
           <h1>Todo List</h1>
 
-          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+          <form className="new-task" onSubmit={this.handleSubmit} >
             <input
               type="text"
               ref="textInput"
