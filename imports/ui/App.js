@@ -95,6 +95,8 @@ App.propTypes = {
 // The wrapped App component fetches tasks from the Tasks collection and
 // supplies them to the underlying App component it wraps as the tasks prop
 export default createContainer(() => {
+  Meteor.subscribe('tasks');
+  
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
