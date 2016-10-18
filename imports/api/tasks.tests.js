@@ -49,6 +49,16 @@ if (Meteor.isServer) {
         assert.equal(Tasks.find().count(), 1);
       });
 
+      it('can check off owned task as complete', () => {
+        const setPrivate = Meteor.server.method_handlers['tasks.setChecked'];
+
+        const invocation = { userId };
+
+        setPrivate.apply(invocation, [taskId, true]);
+
+        assert.propertyVal(Tasks.findOne(), 'checked', true);
+      });
+
       it('can set owned task to private', () => {
         const setPrivate = Meteor.server.method_handlers['tasks.setPrivate'];
 
