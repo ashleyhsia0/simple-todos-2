@@ -10,8 +10,14 @@ import Task from './Task.js';
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      hideCompleted: false,
+    };
+
     // This line is important for autobinding
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
   }
 
   handleSubmit(event) {
@@ -46,7 +52,7 @@ class App extends Component {
               type="checkbox"
               readOnly
               checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
+              onClick={this.toggleHideCompleted}
             />
             Hide Completed Tasks
           </label>
