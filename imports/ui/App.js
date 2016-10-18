@@ -72,13 +72,15 @@ class App extends Component {
 
           <AccountsUIWrapper />
 
-          <form className="new-task" onSubmit={this.handleSubmit} >
-            <input
-              type="text"
-              ref="textInput"
-              placeholder="Type to add new tasks"
-            />
-          </form>
+          { this.props.currentUser ?
+            <form className="new-task" onSubmit={this.handleSubmit} >
+              <input
+                type="text"
+                ref="textInput"
+                placeholder="Type to add new tasks"
+              />
+            </form> : ''
+          }
         </header>
  
         <ul>
@@ -92,6 +94,7 @@ class App extends Component {
 App.propTypes = {
   tasks: PropTypes.array.isRequired,
   incompleteCount: PropTypes.number.isRequired,
+  currentUser: PropTypes.object,
 };
 
 // The wrapped App component fetches tasks from the Tasks collection and
