@@ -9,6 +9,7 @@ export default class Task extends Component {
     super(props);    
     this.toggleChecked = this.toggleChecked.bind(this);
     this.deleteThisTask = this.deleteThisTask.bind(this);
+    this.togglePrivate = this.togglePrivate.bind(this);
   }
 
   toggleChecked() {
@@ -37,6 +38,12 @@ export default class Task extends Component {
           checked={this.props.task.checked}
           onClick={this.toggleChecked}
         />
+
+        { this.props.showPrivateButton ? (
+          <button className="toggle-private" onClick={this.togglePrivate}>
+            { this.props.task.private ? 'Private' : 'Public' }
+          </button>
+        ) : ''}
  
         <span className="text">
           <strong>{this.props.task.username}:</strong> {this.props.task.text}
