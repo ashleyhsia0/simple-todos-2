@@ -49,6 +49,17 @@ if (Meteor.isServer) {
         assert.equal(Tasks.find().count(), 1);
       });
 
+      it('can set owned task to private', () => {
+        const setPrivate = Meteor.server.method_handlers['tasks.setPrivate'];
+
+        const invocation = { userId };
+
+        setPrivate.apply(invocation, [taskId, true]);
+
+        assert.isTrue(Tasks.findOne().private);
+        assert.isBoolean(Tasks.findOne().private);
+      });
+
     });
   });
 }
