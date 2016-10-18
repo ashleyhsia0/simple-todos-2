@@ -35,6 +35,12 @@ class App extends Component {
     this.refs.textInput.value = '';
   }
 
+  toggleHideCompleted() {
+    this.setState({
+      hideCompleted: !this.state.hideCompleted,
+    });
+  }
+
   renderTasks() {
     return this.props.tasks.map((task) => (
       <Task key={task._id} task={task} />
