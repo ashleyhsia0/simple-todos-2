@@ -36,6 +36,19 @@ if (Meteor.isServer) {
         // Verify that the method does what we expected
         assert.equal(Tasks.find().count(), 0);
       });
+
+      it('cannot add a task if user is not signed in', () => {
+        const addTask = Meteor.server.method_handlers['tasks.insert'];
+
+        const invocation = {};
+
+        assert.throws(() => {
+          addTask.apply(invocation, ['This is a test']);
+          }, Meteor.Error, '[not-authorized]');
+
+        assert.equal(Tasks.find().count(), 1);
+      });
+
     });
   });
 }
